@@ -7,4 +7,6 @@ Aplicación web programada en Go (backend), para controlar el seguimiento de su 
 * GCC para compilar SQLite
 * julienschmidt/httprouter
 
+### Vista previa
+
 ![Preview](https://raw.githubusercontent.com/seddin/seguimiento-peso/master/preview.png)
