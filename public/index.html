@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Seguiemiento de Peso</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+        <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+        <link href="logo.png" rel="icon" type="image/x-icon" />
     </head>
     <body>
         <div class="app">
-            <div>
-                {{range .}}
-                    <p>{{.Peso}} {{.Fecha}}</p>
-                {{end}}
-            </div>
+
+            <div class="ct-chart ct-perfect-fourth"></div>
 
             <br>
 
@@ -26,5 +26,29 @@
                 </div>
             </form>
         </div>
+
+
+        <script type="text/javascript">
+            var data = {
+                labels: [
+                        {{range .}}
+                            '{{.Fecha}}',
+                        {{end}}
+                ],
+                series: [
+                    [
+                        {{range .}}
+                            {{.Peso}},
+                        {{end}}
+                    ]
+                ]
+            };
+
+            var options = {
+                height: 200
+            };
+
+            new Chartist.Line('.ct-chart', data, options);
+        </script>
     </body>
 </html>

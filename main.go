@@ -24,7 +24,7 @@ func main () {
 	r.POST("/añadir", AñadirHandler)
 
 
-	http.ListenAndServe(":80", r)
+	http.ListenAndServe(":10000", r)
 }
 
 
@@ -32,7 +32,7 @@ func HomeHandler (rw http.ResponseWriter, r *http.Request, p httprouter.Params) 
 	db, _ := sql.Open("sqlite3", "data.db")
 	defer db.Close()
 
-	rows, _ := db.Query("SELECT peso, fecha FROM seguimiento ORDER BY id DESC")
+	rows, _ := db.Query("SELECT peso, fecha FROM seguimiento ORDER BY id ASC")
 	defer rows.Close()
 
 	entradas := []Entrada{}
