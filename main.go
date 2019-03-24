@@ -5,7 +5,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 	_ "github.com/mattn/go-sqlite3"
 	"html/template"
-	"log"
 	"net/http"
 	"path"
 )
@@ -25,7 +24,7 @@ func main () {
 	r.POST("/añadir", AñadirHandler)
 
 
-	http.ListenAndServe(":10000", r)
+	http.ListenAndServe(":80", r)
 }
 
 
@@ -40,14 +39,9 @@ func HomeHandler (rw http.ResponseWriter, r *http.Request, p httprouter.Params) 
 
 	for rows.Next() {
 		var peso, fecha string
-		err := rows.Scan(&peso, &fecha)
-
-		if err != nil {
-			log.Fatal(err)
-		}
+		rows.Scan(&peso, &fecha)
 
 		entradas = append(entradas, Entrada{ &peso, &fecha})
-
 	}
 
 	RenderHome(rw, &entradas)
