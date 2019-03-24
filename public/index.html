@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>seguimiento de peso</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="app">
+            <div>
+                {{range .}}
+                    <p>{{.Peso}} {{.Fecha}}</p>
+                {{end}}
+            </div>
+
+            <br>
+
+            <form action="/añadir" method="POST">
+                <div>
+                    <input type="text" placeholder="Peso (Kg)" name="peso">
+                    <input type="date" placeholder="Fecha" name="fecha">
+                </div>
+                <div>
+                    <input type="submit" value="Añadir"/>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
